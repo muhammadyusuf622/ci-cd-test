@@ -1,0 +1,22 @@
+name: CI pipeline
+
+on:
+  push:
+    branches: ["main"]
+
+jobs:
+  test-and-build:
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Repositorlarni yuklash
+        uses: actions/checkout@v3
+
+      - name: node_moduleni yuklash
+        run: npm install
+
+      - name: test buyrug'ini ishga tushurish
+        run: npm run test
+
+      - name: build qilish
+        run: npm run build
