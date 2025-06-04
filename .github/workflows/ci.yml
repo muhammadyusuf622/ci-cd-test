@@ -12,7 +12,7 @@ jobs:
       - name: serverga ulanish
         run: |
           mkdir -p ~/.ssh
-          touch ~/.ssh/id_rsa
-          echo ~/.ssh/id_rsa > "${{secrets.SSH_SECRET_KEY}}"
+          echo "${{ secrets.SSH_SECRET_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
-          ssh root@${{vars.HOST}}
+          ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa root@${{ vars.HOST }}
+
