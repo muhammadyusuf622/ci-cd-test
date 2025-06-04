@@ -22,7 +22,7 @@ jobs:
          cd /root/project/ci-cd-test
          git pull origin main
          npm install
-         pm2 restart ci-cd
+         pm2 restart 3
          EOF
 
 
