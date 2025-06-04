@@ -9,14 +9,10 @@ jobs:
     runs-on: ubuntu-22.04
 
     steps:
-      - name: Repositorlarni yuklash
-        uses: actions/checkout@v3
-
-      - name: node_moduleni yuklash
-        run: npm install
-
-      - name: test buyrug'ini ishga tushurish
-        run: npm run test
-
-      - name: build qilish
-        run: npm run build
+      - name: serverga ulanish
+        run: |
+          mkdir -p ~/.ssh
+          touch ~/.ssh/id_rsa
+          echo ~/.ssh/id_rsa > "${{secrets.SSH_SECRET_KEY}}"
+          chmod 600 ~/.ssh/id_rsa
+          ssh root@${{vars.HOST}}
