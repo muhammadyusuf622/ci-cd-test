@@ -16,11 +16,13 @@ jobs:
           chmod 600 ~/.ssh/id_rsa
           ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa root@${{ vars.HOST }}
 
-      - name: pull qilish
+      - name: pull qilish va restart
         run: |
-          ssh root@${{ vars.HOST }}
-          cd /root/project/ci-cd-test
-          git pull origin main
-          npm i
-          pm2 restart ci/cd
+         ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa root@${{ vars.HOST }} << 'EOF'
+         cd /root/project/ci-cd-test
+         git pull origin main
+         npm install
+         pm2 restart ci-cd
+         EOF
+
 
